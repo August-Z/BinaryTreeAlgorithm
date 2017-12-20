@@ -8,53 +8,60 @@
 2.  若右子数不空，则右子数上所有结点的值均大于或等于它的根结点的值；
 3.  左、右子数也分别为二叉排序树；
 
-```javascript
+```typescript
     //首先定义节点的属性
-    class Node {
-        constructor(key) {
-            this.key = key;
-            this.left = null;
-            this.right = null;
-        }
+    export default interface _Node {
+        key: number,
+        left: _Node,
+        right: _Node
     }
 ```
-
-**然后我们可以设计2个函数作为节点生成解决方案:**
-
-```javascript
-    //定义根节点
-    let root = null;
     
-    //插入
-    this.insert = key => {
-        let newNode = new Node(key);
-        if (root === null) {
-            root = newNode; //如果没有根节点，则将新节点指定为根节点
-        } else {
-            insertNode(root, newNode);
-        }
-    };
-    
+**然后我们可以设计二叉树类与解决方案**
+
+```typescript
+import _Node from "./INode";
+   
+class BinaryTree {
+   
+    private static root: _Node = null;
+   
     //插入节点
-    let insertNode = (node, newNode) => {
-        if (newNode.key < node.key) {   //如果子节点小于父节点
-            
-            if (node.left === null) {   //同时父节点没有左子节点
-                node.left = newNode;    //直接赋值
+    private insertNode(node: _Node, newNode: _Node): void {
+        if (newNode.key < node.key) {
+   
+            if (node.left === null) {
+                node.left = newNode;
             } else {
-                insertNode(node.left, newNode);//否则继续向下寻找
+                this.insertNode(node.left, newNode);
             }
-        
-        } else {
             
-            if (node.right === null) {  //判断右子树，与左子树同理
+        } else {
+   
+            if (node.right === null) {
                 node.right = newNode;
             } else {
-                insertNode(node.right, newNode);
+                this.insertNode(node.right, newNode);
             }
-    
+            
         }
-    };
+    }
+   
+    //节点插入解决方案
+    insert(key: number): void {
+        let newNode = {
+            key: key,
+            left: null,
+            right: null
+        };
+        if (BinaryTree.root === null) {
+            BinaryTree.root = newNode;
+        } else {
+            this.insertNode(BinaryTree.root, newNode);
+        }
+    }
+    
+}
 ```
 
 
@@ -66,4 +73,28 @@
 *   后续遍历
 
 ### 中序遍历
-先从左子树开始检查，如果存在左子树，则遍历左子树，如果没有则返回当前节点的值。然后再进行右子树的遍历，方法同左子树。最后返回至上一节点并返回值。最后返回根节点的值。
+先从左子树开始检查，如果存在左子树，则遍历左子树，如果没有则返回当前节点的值。然后再进行右子树的遍历，方法同左子树。最后返回至上一节点并返回值。最后返回根节点的值。  
+```typescript
+import _Node from "../INode";
+
+class Medium {
+    /**
+     * 中序遍历
+     * @param node  节点
+     * @param callback  回调函数
+     */
+    private inOrderTraverseNode(node: _Node, callback: any): void {
+        if (node !== null) {
+            this.inOrderTraverseNode(node.left, callback);   //先遍历左侧子树
+            callback(node.key);    //再输出本身的值
+            this.inOrderTraverseNode(node.right, callback);  //最后遍历右侧子树
+        }
+    };
+
+    inOrderTraverse(root: _Node, callback: object): void {
+        this.inOrderTraverseNode(root, callback);
+    }
+}
+
+export default Medium;
+```

@@ -1,4 +1,4 @@
-class Toolkit{
+class Toolkit {
 
     /**
      * 生成随机数组解决方案

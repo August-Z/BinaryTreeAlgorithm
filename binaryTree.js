@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var toolkit_1 = require("./toolkit");
+var medium_1 = require("./sort/medium");
 var BinaryTree = /** @class */ (function () {
     function BinaryTree() {
     }
@@ -37,22 +38,6 @@ var BinaryTree = /** @class */ (function () {
             this.insertNode(BinaryTree.root, newNode);
         }
     };
-    /**
-     * 中序遍历
-     * @param node
-     * @param callback
-     */
-    BinaryTree.prototype.inOrderTraverseNode = function (node, callback) {
-        if (node !== null) {
-            this.inOrderTraverseNode(node.left, callback); //先遍历左侧子树
-            callback(node.key); //再输出本身的值
-            this.inOrderTraverseNode(node.right, callback); //最后遍历右侧子树
-        }
-    };
-    ;
-    BinaryTree.prototype.inOrderTraverse = function (callback) {
-        this.inOrderTraverseNode(BinaryTree.root, callback);
-    };
     BinaryTree.root = null;
     return BinaryTree;
 }());
@@ -63,6 +48,6 @@ for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
     var key = array_1[_i];
     binaryTree.insert(key);
 }
-binaryTree.inOrderTraverse(function (key) {
-    console.log(key);
-});
+//中序排序
+var medium = new medium_1.default();
+medium.inOrderTraverse(BinaryTree.root, function (key) { return console.log(key); });
