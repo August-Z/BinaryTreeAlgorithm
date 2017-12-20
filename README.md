@@ -28,17 +28,17 @@ class BinaryTree {
    
     //插入节点
     private insertNode(node: _Node, newNode: _Node): void {
-        if (newNode.key < node.key) {
+        if (newNode.key < node.key) {   //如果子节点小于父节点，则站于父节点左侧
    
-            if (node.left === null) {
+            if (node.left === null) {   //如果父节点左子节点为空，则直接赋值
                 node.left = newNode;
             } else {
-                this.insertNode(node.left, newNode);
+                this.insertNode(node.left, newNode);    //否则继续向下寻找
             }
             
-        } else {
+        } else {                        //如果子节点大于等于父节点，则站于父节点右侧
    
-            if (node.right === null) {
+            if (node.right === null) {  //同理于左子树寻找规则
                 node.right = newNode;
             } else {
                 this.insertNode(node.right, newNode);
@@ -49,15 +49,16 @@ class BinaryTree {
    
     //节点插入解决方案
     insert(key: number): void {
-        let newNode = {
+        //实现接口
+        let newNode = { 
             key: key,
             left: null,
             right: null
         };
         if (BinaryTree.root === null) {
-            BinaryTree.root = newNode;
+            BinaryTree.root = newNode;  //如果没有根节点，则将其设置为根节点
         } else {
-            this.insertNode(BinaryTree.root, newNode);
+            this.insertNode(BinaryTree.root, newNode);  //节点插入解决方案
         }
     }
     
