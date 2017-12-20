@@ -43,6 +43,7 @@ class BinaryTree {
 
 }
 
+
 const array = Toolkit.makeRandomArray(10000);   //制造随机数组
 const binaryTree = new BinaryTree();    //二叉树
 
