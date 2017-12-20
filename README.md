@@ -2,7 +2,7 @@
 二叉树排序算法及 demo
 
 ## 二叉排序树的定义  
-**二叉排序树或者是一颗空数，或者是具有下列性质的二叉树：**
+**二叉排序树或者是一颗空树，或者是具有下列性质的二叉树：**
 1.  若左子数不空，则左子数上所有结点的值均小于或等于它的根结点的值；
 
 2.  若右子数不空，则右子数上所有结点的值均大于或等于它的根结点的值；
@@ -98,4 +98,12 @@ class Medium {
 }
 
 export default Medium;
+```
+
+***我们只需要在需要遍历的地方编写下 callback 就好：***
+
+```typescript
+//中序排序
+const medium = new Medium();
+medium.inOrderTraverse(BinaryTree.root, key => console.log(key));
 ```
