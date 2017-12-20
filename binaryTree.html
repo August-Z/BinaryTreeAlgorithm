@@ -13,18 +13,21 @@
 </html>
 <script type="text/javascript">
 
-    function BinaryTree() {
-
-        let Node = function (key) {
+    class Node {
+        constructor(key) {
             this.key = key;
             this.left = null;
             this.right = null;
-        };
+        }
+    }
+
+    function BinaryTree() {
 
         let root = null;
 
-        let insertNode = function (node, newNode) {
-            if (newNode.key > node.key) {
+        //插入节点
+        let insertNode = (node, newNode) => {
+            if (newNode.key < node.key) {
 
                 if (node.left === null) {
                     node.left = newNode;
@@ -43,20 +46,59 @@
             }
         };
 
-        this.insert = function (key) {
+        //插入
+        this.insert = key => {
             let newNode = new Node(key);
             if (root === null) {
                 root = newNode;
             } else {
                 insertNode(root, newNode);
             }
+        };
+
+        /**
+         * 中序遍历
+         * @param node  节点
+         * @param callback  回调
+         */
+        let inOrderTraverseNode = (node, callback) => {
+            if (node !== null) {
+                inOrderTraverseNode(node.left, callback);   //先遍历左侧子树
+                callback(node.key);    //再输出本身的值
+                inOrderTraverseNode(node.right, callback);  //最后遍历右侧子树
+            }
+        };
+
+        this.inOrderTraverse = (callback) => {
+            inOrderTraverseNode(root, callback);
         }
+
     }
 
-    let array = [2, 3, 5, 7, 4, 7, 13, 14, 3, 36, 232, 33, 22, 11, 223];
+    console.time('time');
+
+    const array = makeRandomArray(1000);
+
     let binaryTree = new BinaryTree();
-    for (const i of array) {
-        binaryTree.insert(i);
+    for (const key of array) {
+        binaryTree.insert(key);
     }
-    
+
+    let callback = key => {
+        console.log(key);
+    };
+
+    binaryTree.inOrderTraverse(callback);
+
+
+    console.timeEnd('time');
+
+
+    function makeRandomArray(length) {
+        let array = Array(length);
+        for (let i = 0; i < length; i++) {
+            array[i] = Math.floor(Math.random() * length);
+        }
+        return array;
+    }
 </script>
