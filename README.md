@@ -9,12 +9,12 @@
 3.  左、右子数也分别为二叉排序树；
 
 ```typescript
-    //首先定义节点的属性
-    export default interface _Node {
-        key: number,
-        left: _Node,
-        right: _Node
-    }
+//首先定义节点的属性
+export default interface _Node {
+    key: number,
+    left: _Node,
+    right: _Node
+}
 ```
     
 **然后我们可以设计二叉树类与解决方案**
@@ -24,7 +24,7 @@ import _Node from "./INode";
    
 class BinaryTree {
    
-    private static root: _Node = null;
+    public static root: _Node = null;
    
     //插入节点
     private insertNode(node: _Node, newNode: _Node): void {
