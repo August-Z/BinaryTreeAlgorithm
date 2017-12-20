@@ -100,7 +100,7 @@ class Medium {
 export default Medium;
 ```
 
-***我们只需要在需要遍历的地方编写下 callback 就好：***
+**我们只需要在需要遍历的地方编写下 callback 就好，比如我们将它打印：**
 
 ```typescript
 //中序排序
