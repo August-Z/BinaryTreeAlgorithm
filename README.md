@@ -9,7 +9,7 @@
 3.  左、右子数也分别为二叉排序树；
 
 ```typescript
-//首先定义节点的属性
+//首先定义节点的接口，节点具有：值、左子节点、右子节点
 export default interface _Node {
     key: number,
     left: _Node,
