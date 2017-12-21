@@ -1,12 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var toolkit_1 = require("./toolkit");
-var medium_1 = require("./sort/medium");
-var BinaryTree = /** @class */ (function () {
-    function BinaryTree() {
-    }
+const toolkit_1 = require("./toolkit");
+class BinaryTree {
     //插入节点
-    BinaryTree.prototype.insertNode = function (node, newNode) {
+    insertNode(node, newNode) {
         if (newNode.key < node.key) {
             if (node.left === null) {
                 node.left = newNode;
@@ -23,10 +20,10 @@ var BinaryTree = /** @class */ (function () {
                 this.insertNode(node.right, newNode);
             }
         }
-    };
+    }
     //节点插入解决方案
-    BinaryTree.prototype.insert = function (key) {
-        var newNode = {
+    insert(key) {
+        let newNode = {
             key: key,
             left: null,
             right: null
@@ -37,17 +34,17 @@ var BinaryTree = /** @class */ (function () {
         else {
             this.insertNode(BinaryTree.root, newNode);
         }
-    };
-    BinaryTree.root = null;
-    return BinaryTree;
-}());
-var array = toolkit_1.default.makeRandomArray(10000); //制造随机数组
-var binaryTree = new BinaryTree(); //二叉树
-//依照数组生成二叉树
-for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
-    var key = array_1[_i];
-    binaryTree.insert(key);
+    }
 }
-//中序排序
-var medium = new medium_1.default();
-medium.inOrderTraverse(BinaryTree.root, function (key) { return console.log(key); });
+BinaryTree.root = null;
+const array = toolkit_1.default.makeRandomArray(10000); //制造随机数组
+const binaryTree = new BinaryTree(); //二叉树
+//依照数组生成二叉树
+for (const key of array)
+    binaryTree.insert(key);
+// //中序排序
+// const medium = new Medium();
+// medium.inOrderTraverse(BinaryTree.root, key => console.log(key));
+// //前序遍历
+// const before = new Before();
+// before.preOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
