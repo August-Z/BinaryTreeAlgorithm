@@ -4,7 +4,7 @@ var Medium = /** @class */ (function () {
     function Medium() {
     }
     /**
-     * 中序遍历
+     * 中序遍历，多用于排序整颗二叉树
      * @param node  节点
      * @param callback  回调函数
      */
