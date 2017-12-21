@@ -44,19 +44,24 @@ class BinaryTree {
 
 }
 
-const array = Toolkit.makeRandomArray(10000);   //制造随机数组
+const array = Toolkit.makeRandomArray(100000);   //制造随机数组
 const binaryTree = new BinaryTree();    //二叉树
 
 //依照数组生成二叉树
 for (const key of array) binaryTree.insert(key);
 
-// //中序排序
+console.time('cb');
+
+// // 中序排序
 // const medium = new Medium();
-// medium.inOrderTraverse(BinaryTree.root, key => console.log(key));
+// medium.inOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
+
+Toolkit.quickSort(array);
+
+console.timeEnd('cb');
 
 // //前序遍历
 // const before = new Before();
 // before.preOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
-
 
 
