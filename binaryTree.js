@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var toolkit_1 = require("./toolkit");
+var medium_1 = require("./sort/medium");
 var BinaryTree = /** @class */ (function () {
     function BinaryTree() {
     }
@@ -48,10 +49,9 @@ for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
     binaryTree.insert(key);
 }
 console.time('cb');
-// // 中序排序
-// const medium = new Medium();
-// medium.inOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
-toolkit_1.default.quickSort(array);
+// 中序排序
+var medium = new medium_1.default();
+medium.inOrderTraverse(BinaryTree.root, function (key) { return console.log(key); });
 console.timeEnd('cb');
 // //前序遍历
 // const before = new Before();

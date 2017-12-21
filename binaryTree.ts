@@ -52,11 +52,9 @@ for (const key of array) binaryTree.insert(key);
 
 console.time('cb');
 
-// // 中序排序
-// const medium = new Medium();
-// medium.inOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
-
-Toolkit.quickSort(array);
+// 中序排序
+const medium = new Medium();
+medium.inOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
 
 console.timeEnd('cb');
 
