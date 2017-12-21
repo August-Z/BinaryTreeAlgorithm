@@ -77,6 +77,3 @@ console.log(`二叉树最大值：${maxByTree}`);
 //查找某一个数是否存在于二叉树中
 const isHas = Search.searchNodeKey(BinaryTree.root, 123);
 console.log(BinaryTree.root ? "存在" : "不存在");
-
-//删除二叉树中的某一个数
-Search.removeNode(BinaryTree.root,0);
