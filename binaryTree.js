@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var toolkit_1 = require("./toolkit");
 var medium_1 = require("./sort/medium");
+var before_1 = require("./sort/before");
+var after_1 = require("./sort/after");
 var BinaryTree = /** @class */ (function () {
     function BinaryTree() {
     }
@@ -48,11 +50,12 @@ for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
     var key = array_1[_i];
     binaryTree.insert(key);
 }
-console.time('cb');
 // 中序排序
 var medium = new medium_1.default();
 medium.inOrderTraverse(BinaryTree.root, function (key) { return console.log(key); });
-console.timeEnd('cb');
-// //前序遍历
-// const before = new Before();
-// before.preOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
+//前序遍历
+var before = new before_1.default();
+before.preOrderTraverse(BinaryTree.root, function (key) { return console.log(key); });
+//后序遍历
+var after = new after_1.default();
+after.afterOrderTraverse(BinaryTree.root, function (key) { return console.log(key); });

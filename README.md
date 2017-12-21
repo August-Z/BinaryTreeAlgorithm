@@ -67,11 +67,11 @@ class BinaryTree {
 
 
 ## 二叉树的遍历
-创建好了的二叉树，如果我们要访问某一节点，则需要遍历，有三种方法：  
-*   中序遍历
+创建好了的二叉树，如果我们要访问某一节点，则需要遍历，有三种方法，分别具有不同的优势：  
+*   中序遍历 (通常用于排序)
 
-*   前序遍历
-*   后续遍历
+*   前序遍历 (适合复制整个二叉树)
+*   后续遍历 (适合遍历文件系统)
 
 ### 中序遍历
 先从左子树开始检查，如果存在左子树，则遍历左子树，如果没有则返回当前节点的值。然后再进行右子树的遍历，方法同左子树。最后返回至上一节点并返回值。最后返回根节点的值。  
@@ -113,27 +113,14 @@ medium.inOrderTraverse(BinaryTree.root, key => console.log(key));
 从根节点开始，先输出本节点值，然后再检查左子树... 然后右子树，与中序遍历最大的区别也就是 callback 与左子树检查的先后顺序(是不是很相似呢～)：
 
 ```typescript
-import _Node from "../INode";
-
-class Before{
-    /**
-     * 前序遍历，可以已最快的速度复制整课二叉树
-     * @param node  节点
-     * @param callback  回调函数
-     */
-    private preOrderTraverseNode(node: _Node, callback: any): void {
-        if (node !== null) {
-            callback(node.key);    //先输出本身的值
-            this.preOrderTraverse(node.left, callback);   //然后遍历左侧子树
-            this.preOrderTraverse(node.right, callback);  //最后遍历右侧子树
-        }
-    };
-
-    preOrderTraverse(root: _Node, callback: object): void {
-        this.preOrderTraverseNode(root,callback);
+private preOrderTraverseNode(node: _Node, callback: any): void {
+    if (node !== null) {
+        callback(node.key);    //先输出本身的值
+        this.preOrderTraverse(node.left, callback);   //然后遍历左侧子树
+        this.preOrderTraverse(node.right, callback);  //最后遍历右侧子树
     }
-
 }
-
-export default Before;
 ```
+
+### 后序遍历  
+有了前两种的区别后，其实可以意识到：遍历的方法是与"回调函数"、左子树与右子树的访问顺序有关的，那么后序遍历的代码就不再赘述了，当然项目中是有后序遍历的代码的！ :)

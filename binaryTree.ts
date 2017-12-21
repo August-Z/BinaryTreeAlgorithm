@@ -2,6 +2,7 @@ import Toolkit from './toolkit';
 import _Node from "./INode";
 import Medium from "./sort/medium";
 import Before from "./sort/before";
+import After from "./sort/after";
 
 class BinaryTree {
 
@@ -50,16 +51,16 @@ const binaryTree = new BinaryTree();    //二叉树
 //依照数组生成二叉树
 for (const key of array) binaryTree.insert(key);
 
-console.time('cb');
-
 // 中序排序
 const medium = new Medium();
 medium.inOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
 
-console.timeEnd('cb');
+//前序遍历
+const before = new Before();
+before.preOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
 
-// //前序遍历
-// const before = new Before();
-// before.preOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
+//后序遍历
+const after = new After();
+after.afterOrderTraverse(BinaryTree.root, (key: number) => console.log(key));
 
 
